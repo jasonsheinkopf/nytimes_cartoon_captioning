@@ -5,3 +5,5 @@ transformers
 peft
 bitsandbytes 
 datasets
+numpy
+matplotlib
