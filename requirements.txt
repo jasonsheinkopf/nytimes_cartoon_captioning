@@ -1,0 +1,7 @@
+#TODO: lock down versions
+torch==2.2.2 --index-url https://download.pytorch.org/whl/cu121
+torchvision --index-url https://download.pytorch.org/whl/cu121
+transformers
+peft
+bitsandbytes 
+datasets

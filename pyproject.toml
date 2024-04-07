@@ -1,0 +1,21 @@
+[project]
+name = "blip2cap"
+description = ''
+dynamic = ["version"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["blip2cap*", "tests*"]
+
+[tool.setuptools.dynamic]
+version = {attr = "blip2cap.__version__"}
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = [
+    "tests"
+]
+addopts = [
+    "--import-mode=importlib"
+]
+log_cli = true
