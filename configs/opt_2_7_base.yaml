@@ -1,0 +1,15 @@
+TRAIN:
+  ENABLE: True
+  BATCH_SIZE: 32
+  EVAL_PERIOD: 2
+  CHECKPOINT_PERIOD: 1
+TEST:
+  BATCH_SIZE: 32
+MODEL:
+  ARCH: opt_2_7
+  DROPOUT_RATE: 0.5
+  OUTPUT_DIR: ""
+DATA:
+  DATASET: mhessel/newyorker_caption_contest
+  ANNOTATION: explanation
+  FEATURE: image_description
