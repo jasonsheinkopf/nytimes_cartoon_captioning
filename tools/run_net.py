@@ -58,7 +58,6 @@ def main():
     """
     Spawns train and test.
     """
-    print("Loading and merging config parameters.")
     args = parse_args()
     cfg = load_config(args)
     print(cfg)

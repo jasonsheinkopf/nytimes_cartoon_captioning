@@ -4,3 +4,5 @@ peft
 bitsandbytes 
 datasets
 fvcore
+rouge_score
+sacrebleu

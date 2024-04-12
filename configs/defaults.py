@@ -26,6 +26,9 @@ _C.TRAIN.EVAL_PERIOD = 1
 # Save checkpoint after each period
 _C.TRAIN.CHECKPOINT_PERIOD = 1
 
+# Number of epochs to train for
+_C.TRAIN.EPOCHS = 10
+
 # Resume training from checkpoint
 _C.TRAIN.AUTO_RESUME = True
 
@@ -39,6 +42,8 @@ _C.TEST = CfgNode()
 _C.TEST.DATASET = "nytimes"
 
 _C.TEST.BATCH_SIZE = 8
+
+_C.TEST.NUM_ITER = 10
 
 ################################
 # Model
