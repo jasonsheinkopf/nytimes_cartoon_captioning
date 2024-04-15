@@ -1,0 +1,65 @@
+{
+    "os": "Linux-6.1.58+-x86_64-with-glibc2.35",
+    "python": "3.10.12",
+    "heartbeatAt": "2024-04-14T05:49:49.778846",
+    "startedAt": "2024-04-14T05:49:48.942818",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "TRAIN.ENABLE",
+        "True",
+        "TRAIN.EPOCHS",
+        "1",
+        "TEST.NUM_BATCHES",
+        "1"
+    ],
+    "state": "running",
+    "program": "/content/drive/MyDrive/Projects/Python_Projects/blip2cap/tools/run_net.py",
+    "codePathLocal": "tools/run_net.py",
+    "codePath": "tools/run_net.py",
+    "git": {
+        "remote": "https://github.gatech.edu/eyang80/blip2cap.git",
+        "commit": null
+    },
+    "email": null,
+    "root": "/content/drive/MyDrive/Projects/Python_Projects/blip2cap",
+    "host": "b8c6988c2701",
+    "username": "root",
+    "executable": "/usr/bin/python3",
+    "cpu_count": 1,
+    "cpu_count_logical": 2,
+    "cpu_freq": {
+        "current": 2000.148,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 2000.148,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 2000.148,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "/": {
+            "total": 78.1898422241211,
+            "used": 44.288631439208984
+        }
+    },
+    "gpu": "Tesla T4",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "Tesla T4",
+            "memory_total": 16106127360
+        }
+    ],
+    "memory": {
+        "total": 12.674789428710938
+    }
+}

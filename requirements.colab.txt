@@ -5,4 +5,7 @@ bitsandbytes
 datasets
 fvcore
 rouge_score
-sacrebleu
+nltk
+wandb
+evaluate
+rouge_score

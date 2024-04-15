@@ -3,10 +3,11 @@ TRAIN:
   BATCH_SIZE: 4
   EVAL_PERIOD: 2
   CHECKPOINT_PERIOD: 1
-  EPOCHS: 3
+  EPOCHS: 20
+  WANDB_ENTITY: 'captioneers'
 TEST:
   BATCH_SIZE: 4
-  NUM_ITER: 10
+  NUM_BATCHES: 10 # -1 to test over entire test set
 MODEL:
   ARCH: opt_2_7
   DROPOUT_RATE: 0.5
@@ -15,3 +16,4 @@ DATA:
   DATASET: mhessel/newyorker_caption_contest
   ANNOTATION: explanation
   FEATURE: image_description
+  PROCESSOR: Salesforce/blip2-opt-2.7b

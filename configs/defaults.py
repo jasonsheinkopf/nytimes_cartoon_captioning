@@ -32,6 +32,9 @@ _C.TRAIN.EPOCHS = 10
 # Resume training from checkpoint
 _C.TRAIN.AUTO_RESUME = True
 
+# Group or name
+_C.TRAIN.WANDB_ENTITY = 'captioneers'
+
 ################################
 # Testing
 ################################
@@ -43,7 +46,7 @@ _C.TEST.DATASET = "nytimes"
 
 _C.TEST.BATCH_SIZE = 8
 
-_C.TEST.NUM_ITER = 10
+_C.TEST.NUM_BATCHES = 10
 
 ################################
 # Model
@@ -83,6 +86,11 @@ _C.DATA.ANNOTATION = "explanation"
 
 # Which feature to use for captioning
 _C.DATA.FEATURE = "image_description"
+
+#  Hugging face processor for image processing and text tokenization
+_C.DATA.PROCESSOR = "Salesforce/blip2-opt-2.7b"
+
+#
 
 def get_cfg():
     """

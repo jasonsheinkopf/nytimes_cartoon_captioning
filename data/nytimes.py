@@ -30,7 +30,7 @@ def collate_fn(processor):
                 processed_batch[key] = torch.stack([example[key] for example in batch])
             else:
                 text_inputs = processor.tokenizer(
-                    [example["text"] for example in batch], padding=True, return_tensors="pt"
+                    [example["text"] for example in batch], padding='max_length', truncation=True, max_length=50, return_tensors="pt"
                 )
                 processed_batch["input_ids"] = text_inputs["input_ids"]
                 processed_batch["attention_mask"] = text_inputs["attention_mask"]
@@ -39,19 +39,16 @@ def collate_fn(processor):
 
 
 def build_data_loader(cfg):
-    mode = 'train' if cfg.TRAIN.ENABLE else 'test'
 
-    processor = AutoProcessor.from_pretrained("Salesforce/blip2-opt-2.7b")
-    if mode == 'train':
-        train = load_dataset("jmhessel/newyorker_caption_contest", 'explanation', split='train')
-        train_dataset = ImageCaptioningDataset(train, processor)
-        train_dataloader = DataLoader(train_dataset, shuffle=True, batch_size=cfg.TRAIN.BATCH_SIZE, collate_fn=collate_fn(processor))
-    else:
-        train_dataloader = None
+    processor = AutoProcessor.from_pretrained(cfg.DATA.PROCESSOR)
+
+    train = load_dataset("jmhessel/newyorker_caption_contest", 'explanation', split='train')
+    train_dataset = ImageCaptioningDataset(train, processor)
+    train_dataloader = DataLoader(train_dataset, shuffle=True, batch_size=cfg.TRAIN.BATCH_SIZE, collate_fn=collate_fn(processor))
 
     test = load_dataset("jmhessel/newyorker_caption_contest", 'explanation', split='validation')
     test_dataset = ImageCaptioningDataset(test, processor)
     test_dataloader = DataLoader(test_dataset, shuffle=False, batch_size=cfg.TEST.BATCH_SIZE, collate_fn=collate_fn(processor))
 
-    return train_dataloader, test_dataloader
+    return train_dataloader, test_dataloader, processor
 
