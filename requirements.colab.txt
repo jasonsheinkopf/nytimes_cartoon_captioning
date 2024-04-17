@@ -3,3 +3,9 @@ transformers
 peft
 bitsandbytes 
 datasets
+fvcore
+rouge_score
+nltk
+wandb
+evaluate
+rouge_score
