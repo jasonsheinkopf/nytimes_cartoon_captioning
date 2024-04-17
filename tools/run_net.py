@@ -74,6 +74,7 @@ def main():
     if wandb_key is None:
         print('Wandb_key not detected. Net will not be logged. To add your key, run this line before the script.')
         print('os.environ["WANDB_API_KEY"] = input("Please enter your WandB API key: ")')
+        wandb = None
 
     np.random.seed(cfg.RNG)
     torch.manual_seed(cfg.RNG)
@@ -122,7 +123,7 @@ def main():
         gen_text, metrics = test(cfg, model, test_loader, processor)
         print('\nMetrics on test set')
         print(metrics)
-        # gen_text, metrics = infer(test_loader, model, processor, -1, cfg)
+        
 
 
 if __name__ == "__main__":
