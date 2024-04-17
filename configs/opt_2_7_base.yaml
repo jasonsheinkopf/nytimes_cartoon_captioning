@@ -1,0 +1,24 @@
+TRAIN:
+  ENABLE: True
+  BATCH_SIZE: 4
+  EVAL_PERIOD: 2
+  CHECKPOINT_PERIOD: 1
+  EPOCHS: 6
+  WANDB_ENTITY: 'captioneers'
+  NUM_BATCHES: -1
+TEST:
+  BATCH_SIZE: 4
+  NUM_BATCHES: 10 # -1 to test over entire test set
+MODEL:
+  BASE_MODEL: Salesforce/blip2-opt-2.7b
+  ARCH: opt_2_7
+  NOTES: ""
+  DROPOUT_RATE: 0.15
+  LORA_DROPOUT: 0.15
+  OUTPUT_DIR: ""
+  L2_REG: 0.15
+DATA:
+  DATASET: mhessel/newyorker_caption_contest
+  ANNOTATION: explanation
+  FEATURE: image_description
+  PROCESSOR: Salesforce/blip2-opt-2.7b
