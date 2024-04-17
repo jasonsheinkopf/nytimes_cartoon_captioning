@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 
 tools/API.py
+wandb/
