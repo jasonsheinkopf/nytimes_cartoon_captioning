@@ -74,7 +74,6 @@ def main():
     if wandb_key is None:
         print('Wandb_key not detected. Net will not be logged. To add your key, run this line before the script.')
         print('os.environ["WANDB_API_KEY"] = input("Please enter your WandB API key: ")')
-        wandb = None
 
     np.random.seed(cfg.RNG)
     torch.manual_seed(cfg.RNG)
