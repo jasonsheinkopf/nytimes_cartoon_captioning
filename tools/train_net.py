@@ -13,7 +13,7 @@ project_path = os.path.join(script_dir, '..', '..', 'BLIP2CAP')
 sys.path.append(project_path)
 
 from test_net import test
-import wandb
+import math
 
 from data.nytimes import build_data_loader
 
@@ -78,8 +78,8 @@ def train_epoch(train_loader, model, optimizer, cur_epoch, cfg, wandb):
         optimizer.step()
         optimizer.zero_grad()
 
-        # print loss 10 times per batch
-        if idx % len(train_loader) // 100 == 0:
+        # Print loss approximately 10 times per batch
+        if idx % math.ceil(num_batches / 10) == 0:
             print(f' Batch {idx} train loss: {loss}')
     
     # find average loss

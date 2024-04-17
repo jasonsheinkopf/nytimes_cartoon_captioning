@@ -8,7 +8,7 @@ TRAIN:
   NUM_BATCHES: -1
 TEST:
   BATCH_SIZE: 8
-  NUM_BATCHES: 10 # -1 to test over entire test set
+  NUM_BATCHES: -1 # -1 to test over entire test set
 MODEL:
   BASE_MODEL: Salesforce/blip2-opt-2.7b
   ARCH: blip2_quant

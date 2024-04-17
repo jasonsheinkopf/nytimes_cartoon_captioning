@@ -67,7 +67,6 @@ def infer(test_loader, model, processor, num_samples, cfg):
             print(f'\nGround truth: {orig_text[0]}\nGenerated text: {gen_text[0]}\n')
 
     # evaluate all captions
-    print('\nEvaluating test set captions\n')
     metrics = evaluate_captions(input_text_list, gen_text_list)
     
     return gen_text_list, metrics

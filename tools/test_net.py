@@ -49,7 +49,8 @@ def test(cfg, model, test_loader, processor):
         test_loss /= num_batches
         print(f'\nTest loss: {test_loss}')
 
-        # infer on single sample
+        # get metrics on all test samples
+        print('\nGetting metrics on test set.\n')
         _, metrics = infer(test_loader, model, processor, 1, cfg)
 
         return test_loss, metrics
