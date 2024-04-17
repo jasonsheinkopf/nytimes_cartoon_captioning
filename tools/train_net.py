@@ -20,7 +20,8 @@ from data.nytimes import build_data_loader
 
 def log_data(train_loss, test_loss, metrics, cur_epoch, cfg, wandb):
     print(f'Epoch: {cur_epoch}, Train Loss: {train_loss}, Test Loss: {test_loss}')
-    if wandb is not None:
+    # only log if wandb has been initialized
+    if wandb.run is not None:
         wandb.log({
             'test_loss': test_loss,
             'bleu': metrics['bleu'],
