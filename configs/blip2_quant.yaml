@@ -7,11 +7,11 @@ TRAIN:
   WANDB_ENTITY: 'captioneers'
   NUM_BATCHES: -1
 TEST:
-  BATCH_SIZE: 4
+  BATCH_SIZE: 8
   NUM_BATCHES: 10 # -1 to test over entire test set
 MODEL:
   BASE_MODEL: Salesforce/blip2-opt-2.7b
-  ARCH: opt_2_7
+  ARCH: blip2_quant
   NOTES: ""
   DROPOUT_RATE: 0.15
   LORA_DROPOUT: 0.15

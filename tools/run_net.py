@@ -65,9 +65,7 @@ def main():
     """
     args = parse_args()
     cfg = load_config(args)
-    print(cfg)
-
-    print(f'Running with config')
+    print('Running with config')
     print(cfg)
 
     # Access WANDB_KEY environment variable with default value None
@@ -80,18 +78,17 @@ def main():
     np.random.seed(cfg.RNG)
     torch.manual_seed(cfg.RNG)
 
-    if wandb_key is not None:
+    # only log run in train mode if a key is provided
+    if wandb_key is not None and cfg.TRAIN.ENABLE:
+        # cast config to dict
+        cfg_dict = dict(cfg)
         wandb.login(key=wandb_key)
         wandb.init(
             project='blip2cap',
             entity=cfg.TRAIN.WANDB_ENTITY,
             name=cfg.MODEL.ARCH,
-            config={
-                'Train Batch Size': cfg.TRAIN.BATCH_SIZE,
-                'Test Batch Size': cfg.TEST.BATCH_SIZE,
-                'Dropout Rate': cfg.MODEL.DROPOUT_RATE,
-                'Dataset': cfg.DATA.DATASET
-            }
+            config=cfg_dict,
+            notes=cfg.MODEL.NOTES,
         )
 
     model = build_model(cfg)
@@ -99,26 +96,33 @@ def main():
     # load data
     train_loader, test_loader, processor = build_data_loader(cfg)
 
-
     if cfg.TRAIN.ENABLE:
         train(cfg, model, train_loader, test_loader, processor, wandb)
         # infer on first X samples and save to wandb after run
-        gen_text = infer(test_loader, model, processor, -1, cfg)
+        gen_text, metrics = infer(test_loader, model, processor, -1, cfg)
 
-        print('Generated text list test dataset')
+        test_output_text = ""
         for idx, item in enumerate(gen_text):
-            print(f'{idx}: {item}')
+            test_output_text += f"{idx}: {item}\n"
+        print(f'\nFinal captions\n{test_output_text}')
 
-        # create line separated single text string of all gen responses
-        test_output_text = '/n'.join(gen_text)
-
-        # create wandb artifact and log directly from memory
-        artifact = wandb.Artifact("test_genearations", type="dataset")
-        artifact.add_text("test_generations.txt", test_output_text)
-        wandb.log_artifact(artifact)
+        if wandb_key is not None:
+            # save the output file to wandb run dir
+            wandb_run_dir = wandb.run.dir
+            gens_path = os.path.join(wandb_run_dir, f'{wandb.run.id}_gen_captions.txt')
+            # write file to disk
+            with open(gens_path, 'w') as f:
+                f.write(test_output_text)
+            # save to wandb run
+            wandb.save(gens_path, base_path=wandb_run_dir)
+        else:
+            print(test_output_text)
 
     else:
-        test(cfg, model, test_loader, processor)
+        gen_text, metrics = test(cfg, model, test_loader, processor)
+        print('\nMetrics on test set')
+        print(metrics)
+        # gen_text, metrics = infer(test_loader, model, processor, -1, cfg)
 
 
 if __name__ == "__main__":

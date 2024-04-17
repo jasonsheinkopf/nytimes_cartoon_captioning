@@ -30,7 +30,8 @@ def collate_fn(processor):
                 processed_batch[key] = torch.stack([example[key] for example in batch])
             else:
                 text_inputs = processor.tokenizer(
-                    [example["text"] for example in batch], padding='max_length', truncation=True, max_length=50, return_tensors="pt"
+                    [example["text"] for example in batch], padding=True, return_tensors="pt"
+                    # [example["text"] for example in batch], padding='max_length', truncation=True, max_length=50, return_tensors="pt"
                 )
                 processed_batch["input_ids"] = text_inputs["input_ids"]
                 processed_batch["attention_mask"] = text_inputs["attention_mask"]

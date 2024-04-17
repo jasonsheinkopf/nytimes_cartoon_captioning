@@ -35,6 +35,9 @@ _C.TRAIN.AUTO_RESUME = True
 # Group or name
 _C.TRAIN.WANDB_ENTITY = 'captioneers'
 
+# Control number of train batches for testing
+_C.TRAIN.NUM_BATCHES = -1
+
 ################################
 # Testing
 ################################
@@ -57,11 +60,23 @@ _C.MODEL = CfgNode()
 # Path to checkpoint path
 _C.MODEL.CHECKPOINT_FILE_PATH = ""
 
+# Base Huggingface model
+_C.MODEL.BASE_MODEL = "Salesforce/blip2-opt-2.7b"
+
 # architecture
 _C.MODEL.ARCH = ""
 
+# detailed notes
+_C.MODEL.NOTES = ""
+
 # dropout rate
 _C.MODEL.DROPOUT_RATE = 0.5
+
+# LoRA dropout
+_C.MODEL.LORA_DROPOUT = 0.05
+
+# L2 regularization term
+_C.MODEL.L2_REG = 0.05
 
 # checkpoint dir
 _C.MODEL.CHECKPOINT_DIR = "checkpoints"

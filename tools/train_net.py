@@ -44,9 +44,11 @@ def train_epoch(train_loader, model, optimizer, cur_epoch, cfg, wandb):
     # init loss
     train_loss = 0
 
+    num_batches = len(train_loader) if cfg.TRAIN.NUM_BATCHES == -1 else cfg.TRAIN.NUM_BATCHES
+
     # iterate over training dataloader
-    for idx, batch in tqdm(enumerate(train_loader)):
-        if idx > 10:
+    for idx, batch in enumerate(train_loader):
+        if idx >= num_batches:
             break
         input_ids = batch.pop('input_ids').to(model.device, torch.long)
         pixel_values = batch.pop('pixel_values').to(model.device, torch.float32)
@@ -75,9 +77,14 @@ def train_epoch(train_loader, model, optimizer, cur_epoch, cfg, wandb):
         # update optimizer
         optimizer.step()
         optimizer.zero_grad()
+
+        # print loss 10 times per batch
+        if idx % len(train_loader) // 100 == 0:
+            print(f' Batch {idx} train loss: {loss}')
     
     # find average loss
-    train_loss /= len(train_loader)
+    # print(f'Cumulative train loss on {num_batches} batches: {train_loss}')
+    train_loss /= num_batches
 
     return train_loss
 
@@ -91,18 +98,17 @@ def train(cfg, model, train_loader, test_loader, processor, wandb):
     print('Training with config:')
     print(cfg)
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=5e-4)
-
-    start_epoch = 0
-
-    print(f'Start epoch: {start_epoch}')
+    optimizer = torch.optim.Adam(model.parameters(), lr=5e-4, weight_decay=cfg.MODEL.L2_REG)
 
     for idx, cur_epoch in enumerate(range(cfg.TRAIN.EPOCHS)):
+        print(f'\n==================================================')
+        print(f'Training epoch: {idx}')
+        print(f'==================================================\n')
         # consider shuffling dataset
         # train for one epoch
         train_loss = train_epoch(train_loader, model, optimizer, cur_epoch, cfg, wandb)
 
-        print(f'Epoch {idx} training loss: {train_loss}')
+        print(f'\nEpoch {idx} training loss: {train_loss}')
 
         # test on validation set
         test_loss, metrics = test(cfg, model, test_loader, processor)
