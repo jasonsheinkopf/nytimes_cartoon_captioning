@@ -98,7 +98,10 @@ def opt_2_7_identity(cfg):
     """
     Provides a starting point for modifying the projection layer(s). A square linear
     hidden layer is appended to the original projection layer and initialized to
-    an identity matrix, with a few corruptions.
+    an identity matrix. 
+    
+    The Relu between the original projection layer and identity
+    matrix will slightly "corrupt" the model.
     """
     # get quantized base model
     base_model = blip2_quant(cfg)
@@ -118,8 +121,8 @@ def opt_2_7_identity(cfg):
     with torch.no_grad():
         identity.weight.fill_(0)
         identity.weight += (torch.eye(original_language_projection.out_features).to(base_model.device)
-        #Corrupt the identity matrix with noise to mimic initialization state.
-            + ((1/3.5) * (torch.randn((original_language_projection.out_features, original_language_projection.out_features)))).char().to(base_model.device)
+            #Corrupt the identity matrix with noise to mimic initialization state.
+            #+ ((1/4.5) * (torch.randn((original_language_projection.out_features, original_language_projection.out_features)))).char().to(base_model.device)
         )
         print(original_language_projection.weight)
         print(identity.weight)
@@ -133,7 +136,7 @@ def opt_2_7_identity(cfg):
             #"q_proj", 
             # "k_proj", 
             "language_projection.0",
-            #"language_projection.2"
+            "language_projection.2"
         ],
     ))
 

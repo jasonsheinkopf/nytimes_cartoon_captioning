@@ -71,18 +71,20 @@ def main():
     # Access WANDB_KEY environment variable with default value None
     wandb_key = os.environ.get("WANDB_API_KEY", None)
 
-    if wandb_key is None:
-        print('Wandb_key not detected. Net will not be logged. To add your key, run this line before the script.')
-        print('os.environ["WANDB_API_KEY"] = input("Please enter your WandB API key: ")')
+    # if wandb_key is None:
+    #     print('Wandb_key not detected. Net will not be logged. To add your key, run this line before the script.')
+    #     print('os.environ["WANDB_API_KEY"] = input("Please enter your WandB API key: ")')
 
     np.random.seed(cfg.RNG)
     torch.manual_seed(cfg.RNG)
 
+    if wandb_key is not None:
+        wandb.login(key=wandb_key)
+    
     # only log run in train mode if a key is provided
-    if wandb_key is not None and cfg.TRAIN.ENABLE:
+    if cfg.TRAIN.ENABLE:
         # cast config to dict
         cfg_dict = dict(cfg)
-        wandb.login(key=wandb_key)
         wandb.init(
             project=cfg.TRAIN.WANDB_PROJECT,
             entity=cfg.TRAIN.WANDB_ENTITY,
