@@ -124,7 +124,7 @@ def main():
         gen_text, metrics = test(cfg, model, test_loader, processor)
         print('\nMetrics on test set')
         print(metrics)
-        # gen_text, metrics = infer(test_loader, model, processor, -1, cfg)
+        
 
 
 if __name__ == "__main__":
