@@ -84,7 +84,7 @@ def main():
         cfg_dict = dict(cfg)
         wandb.login(key=wandb_key)
         wandb.init(
-            project='blip2cap',
+            project=cfg.TRAIN.WANDB_PROJECT,
             entity=cfg.TRAIN.WANDB_ENTITY,
             name=cfg.MODEL.ARCH,
             config=cfg_dict,
