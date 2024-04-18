@@ -13,13 +13,15 @@ from transformers import (
     Blip2ForConditionalGeneration,
     #PhiConfig,
     Blip2Model,
-    AutoConfig
+    AutoConfig,
+    AutoModelForCausalLM
 )
 import torch
 import torch.nn as nn
 import bitsandbytes
 from peft import LoraConfig, get_peft_model
 
+OPT_1_3_INPUT_DIM = 2048
 
 def blip2_quant(cfg):
     quantization_config = BitsAndBytesConfig(load_in_8_bit=True)
@@ -63,6 +65,47 @@ def opt_2_7(cfg):
 
     return model
 
+def opt_1_3(cfg):
+    """
+    Minimal language model replacement of Salesforce/blip2-opt-2.7b with the 
+    smaller facebook/opt-1.3b model.
+    """
+    base_model = blip2_quant(cfg)
+    original_language_projection = base_model.language_projection
+
+    opt_1_3_lm = AutoModelForCausalLM.from_pretrained('facebook/opt-1.3b',
+        #torch_dtype=torch.float16,
+        #torch_dtype=torch.bfloat16,
+        trust_remote_code=False,
+        #local_files_only=True
+        device_map='auto',load_in_8bit=True
+
+    )
+    base_model.language_model = opt_1_3_lm
+    base_model.language_projection = bitsandbytes.nn.Linear8bitLt(
+        original_language_projection.in_features, OPT_1_3_INPUT_DIM).to(base_model.device)
+    base_model.post_init()
+
+    # add LoRA adapters for all layers
+    model = get_peft_model(base_model,
+                           LoraConfig(
+                               r=16,
+                               lora_alpha=32,
+                               lora_dropout=cfg.MODEL.LORA_DROPOUT,
+                               bias="none",
+                               target_modules=[
+                                #    "qformer",
+                                    # "q_proj", 
+                                    # "k_proj",
+                                    # "v_proj",
+                                    # "out_proj",
+                                    "language_projection"
+                                    ]
+                                )
+                            )
+    
+    model.print_trainable_parameters()
+    return model
 
 def opt_2_7_qlang(cfg):
     """
@@ -127,17 +170,22 @@ def opt_2_7_identity(cfg):
         print(original_language_projection.weight)
         print(identity.weight)
 
-    model = get_peft_model(base_model, LoraConfig(
-        r=16,
-        lora_alpha=32,
-        lora_dropout=0.05,
-        bias="none",
-        target_modules=[
-            #"q_proj", 
-            # "k_proj", 
-            "language_projection.0",
-            "language_projection.2"
-        ],
-    ))
+    # add LoRA adapters for all layers
+    model = get_peft_model(base_model,
+                           LoraConfig(
+                               r=16,
+                               lora_alpha=32,
+                               lora_dropout=cfg.MODEL.LORA_DROPOUT,
+                               bias="none",
+                               target_modules=[
+                                   #"qformer",
+                                    # "q_proj", 
+                                    # "k_proj",
+                                    # "v_proj",
+                                    # "out_proj",
+                                    "language_projection"
+                                    ]
+                                )
+                            )
 
     return model
