@@ -63,8 +63,11 @@ def infer(test_loader, model, processor, num_samples, cfg):
         gen_text_list.append(gen_text.rstrip('\n'))
         input_text_list.append(orig_text.rstrip('\n'))
 
-        if num_samples == 1:
-            print(f'\nGround truth: {orig_text[0]}\nGenerated text: {gen_text[0]}\n')
+        try: # This sometimes goes out of range when the model is underfit. Possibly when the model chooses to generate nothing - eyang
+            if num_samples == 1:
+                print(f'\nGround truth: {orig_text[0]}\nGenerated text: {gen_text[0]}\n')
+        except:
+            pass
 
     # evaluate all captions
     metrics = evaluate_captions(input_text_list, gen_text_list)
