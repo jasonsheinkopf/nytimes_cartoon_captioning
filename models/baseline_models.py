@@ -178,14 +178,12 @@ def opt_2_7_identity(cfg):
                                lora_dropout=cfg.MODEL.LORA_DROPOUT,
                                bias="none",
                                target_modules=[
-                                   #"qformer",
-                                    # "q_proj", 
-                                    # "k_proj",
-                                    # "v_proj",
-                                    # "out_proj",
-                                    "language_projection"
+                                    #"language_projection.0",
+                                    "language_projection.2"
                                     ]
                                 )
                             )
+    
+    print(model)
 
     return model
