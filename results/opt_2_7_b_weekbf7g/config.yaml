@@ -1,0 +1,99 @@
+wandb_version: 1
+
+RNG:
+  desc: null
+  value: 42
+TRAIN:
+  desc: null
+  value:
+    ENABLE: true
+    BATCH_SIZE: 4
+    EVAL_PERIOD: 2
+    CHECKPOINT_PERIOD: 1
+    EPOCHS: 3
+    AUTO_RESUME: true
+    WANDB_ENTITY: captioneers
+    WANDB_PROJECT: blip2cap
+    NUM_BATCHES: 10
+TEST:
+  desc: null
+  value:
+    DATASET: nytimes
+    BATCH_SIZE: 4
+    NUM_BATCHES: 10
+MODEL:
+  desc: null
+  value:
+    CHECKPOINT_FILE_PATH: ''
+    BASE_MODEL: Salesforce/blip2-opt-2.7b
+    ARCH: opt_2_7
+    NOTES: First qformer and lang proj
+    DROPOUT_RATE: 0.15
+    L2_REG: 0.15
+    CHECKPOINT_DIR: checkpoints
+    DEVICE: cuda
+    OUTPUT_DIR: ''
+LORA:
+  desc: null
+  value:
+    DROPOUT: 0.15
+    R: 32
+    ALPHA: 32
+    BIAS: none
+DATA:
+  desc: null
+  value:
+    DATASET: mhessel/newyorker_caption_contest
+    ANNOTATION: explanation
+    FEATURE: image_description
+    PROCESSOR: Salesforce/blip2-opt-2.7b
+_wandb:
+  desc: null
+  value:
+    python_version: 3.10.12
+    cli_version: 0.16.6
+    framework: huggingface
+    huggingface_version: 4.38.2
+    is_jupyter_run: false
+    is_kaggle_kernel: false
+    start_time: 1713595003.0
+    t:
+      1:
+      - 1
+      - 2
+      - 3
+      - 5
+      - 11
+      - 12
+      - 49
+      - 51
+      - 53
+      - 55
+      - 71
+      - 98
+      - 100
+      2:
+      - 1
+      - 2
+      - 3
+      - 5
+      - 11
+      - 12
+      - 49
+      - 51
+      - 53
+      - 55
+      - 71
+      - 98
+      - 100
+      3:
+      - 3
+      - 13
+      - 16
+      - 23
+      4: 3.10.12
+      5: 0.16.6
+      6: 4.38.2
+      8:
+      - 5
+      13: linux-x86_64

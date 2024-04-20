@@ -6,6 +6,7 @@ Test BLIP2 image captioning model.
 
 import torch
 import sys, os
+# import wandb
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 project_path = os.path.join(script_dir, '..', '..', 'BLIP2CAP')
@@ -15,7 +16,7 @@ sys.path.append(project_path)
 from metrics.evaluation import evaluate_captions, infer
 
 
-def test(cfg, model, test_loader, processor):
+def test(cfg, model, test_loader, processor, wandb, train_epoch=0):
     """
     Test model on image captioning dataset.
     Args:
@@ -51,7 +52,25 @@ def test(cfg, model, test_loader, processor):
 
         # get metrics on all test samples
         print('\nGetting metrics on test set.\n')
-        _, metrics = infer(test_loader, model, processor, 1, cfg)
+        gen_text_list, metrics = infer(test_loader, model, processor, 1, cfg)
+
+        # push results of test for this epoch to wandb
+        test_output_text = ""
+        for idx, item in enumerate(gen_text_list):
+            test_output_text += f"{idx}: {item}\n"
+
+        if wandb.run is not None:
+            # save the output file to wandb run dir
+            wandb_run_dir = wandb.run.dir
+            gens_path = os.path.join(wandb_run_dir, f'{wandb.run.id}_gen_captions_epoch_{train_epoch}.txt')
+            # write file to disk
+            with open(gens_path, 'w') as f:
+                f.write(test_output_text)
+            # save to wandb run
+            wandb.save(gens_path, base_path=wandb_run_dir)
+
+        if train_epoch == cfg.TRAIN.EPOCHS:
+            print(f'\nFinal captions\n{test_output_text}')
 
         return test_loss, metrics
 

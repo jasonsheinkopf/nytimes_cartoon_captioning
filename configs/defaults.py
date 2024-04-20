@@ -74,9 +74,6 @@ _C.MODEL.NOTES = ""
 # dropout rate
 _C.MODEL.DROPOUT_RATE = 0.5
 
-# LoRA dropout
-_C.MODEL.LORA_DROPOUT = 0.05
-
 # L2 regularization term
 _C.MODEL.L2_REG = 0.05
 
@@ -88,6 +85,24 @@ _C.MODEL.DEVICE = "cuda"
 
 # output dir
 _C.MODEL.OUTPUT_DIR = ""
+
+################################
+# Lora
+################################
+
+_C.LORA = CfgNode()
+
+# LoRA dropout
+_C.LORA.DROPOUT = 0.05
+
+# rank
+_C.LORA.R = 16
+
+# lora alpha
+_C.LORA.ALPHA = 32
+
+# lora bias
+_C.LORA.BIAS = 'none'   # none, all, lora_only
 
 ################################
 # Data
