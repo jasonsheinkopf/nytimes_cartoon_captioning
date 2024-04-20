@@ -101,18 +101,18 @@ def train(cfg, model, train_loader, test_loader, processor, wandb):
 
     optimizer = torch.optim.Adam(model.parameters(), lr=5e-4, weight_decay=cfg.MODEL.L2_REG)
 
-    for idx, cur_epoch in enumerate(range(cfg.TRAIN.EPOCHS)):
+    for cur_epoch in range(cfg.TRAIN.EPOCHS):
         print(f'\n==================================================')
-        print(f'Training epoch: {idx}')
+        print(f'Training epoch: {cur_epoch}')
         print(f'==================================================\n')
         # consider shuffling dataset
         # train for one epoch
         train_loss = train_epoch(train_loader, model, optimizer, cur_epoch, cfg, wandb)
 
-        print(f'\nEpoch {idx} training loss: {train_loss}')
+        print(f'\nEpoch {cur_epoch} training loss: {train_loss}')
 
         # test on validation set
-        test_loss, metrics = test(cfg, model, test_loader, processor)
+        test_loss, metrics = test(cfg, model, test_loader, processor, wandb, cur_epoch)
 
         # generate data logs
         log_data(train_loss, test_loss, metrics, cur_epoch, cfg, wandb)
