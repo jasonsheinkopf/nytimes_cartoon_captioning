@@ -20,7 +20,7 @@ LORA:
   DROPOUT: 0.15
   R: 32
   ALPHA: 32
-  BIAS: 'lora_only'   # none, all, lora_only
+  BIAS: 'none'   # none, all, lora_only
 DATA:
   DATASET: mhessel/newyorker_caption_contest
   ANNOTATION: explanation

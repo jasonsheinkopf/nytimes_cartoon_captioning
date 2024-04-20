@@ -1,0 +1,130 @@
+0: Two men are walking up a mountain. A bigfoot is standing on the side of the mountain.
+1: A man is laying on a casket. He is surrounded by people.
+2: There are two birds in a cage. The birds are sitting on a branch.
+3: A man is standing in front of a large box. He is looking at the box.
+4: A man is in a wheelchair. He is being helped by two men.
+5: A man is looking at a box of bones. He is wearing a top hat and a bow tie.
+6: Two dogs are standing next to each other. The dogs are wearing a triangle on their heads.
+7: A man is standing in the doorway of a subway car. He is holding a small child.
+8: Two hikers are walking in the woods. They are near a train.
+9: A man is sitting on a roof in a city. He is looking at a computer screen.
+10: A man and a woman are standing in the rain. The man is holding an umbrella.
+11: A man is in a hotel room. He is talking to a woman who is standing next to a suitcase.
+12: A man is in a hospital bed. He is talking to a nurse.
+13: A group of people are sitting around a table. A man is speaking to them.
+14: Two people are standing in front of a huge sandwich. The sandwich is huge.
+15: There are several birds flying around. The birds are flying around the city.
+16: A man is sitting at a table with a board. He is talking to a man in a suit.
+17: A man is sitting at a table with a woman and a man. The man is holding a trumpet.
+18: A man is sitting at a bar. He is drinking a beer. A train is sitting in the bar.
+19: A man is giving a toast at a party. He is holding a piece of bread.
+20: A priest is in a hospital bed. He is laying on a bed with a man in a wheelchair.
+21: A woman is in an elevator with a bunch of people. She is looking at a sign that says, "Fire in the building."
+22: A man is standing on a balcony with a bird. The bird is eating a piece of pizza.
+23: A man is sitting in a chair and a woman is sitting on the other chair. The woman is reading a newspaper.
+24: A couple is sitting on the grass in the park. A man is holding a cigarette in his mouth. The woman is holding a glass of wine.
+25: A group of children are playing in the snow. A woman is standing in the middle of the group.
+26: A man is in a courtroom. He is wearing a hoodie.
+27: A man is sitting on a cake. A woman is sitting on a chair.
+28: Two men are skiing down a hill. One man is holding a pole and the other is holding a shovel.
+29: Two bulls are standing in a field. A cow is standing next to the bulls.
+30: A dog is surrounded by sheep. The dog is a sheepdog.
+31: There are people in a circle. They are all connected by ropes.
+32: A man is flying through the air with a parachute. He is being pulled by a woman.
+33: Two men are digging in the desert. One man is digging and the other is watching.
+34: A man is sitting at a desk with a bull. The bull is eating a bowl of soup.
+35: A man is running with a surfboard. He is running to the receptionist.
+36: A family is sitting on a couch. A man is reading a book. A little girl is sitting on the floor.
+37: Two men are on their bikes. One man is talking to the other man.
+38: A man is walking down the street.  There are two women walking behind him.
+39: Two chefs are standing in a tunnel. One chef is holding a spatula and the other is holding a pot.
+40: A doctor is examining a patient in a hospital bed. The doctor is holding a scalpel.
+41: A man is in bed with his wife. He is reading a book.
+42: A teacher is talking to a student. The student is looking at the teacher.
+43: A man is looking at a turkey in a store. He is talking to a woman.
+44: A man is talking to another man.  The man is wearing a suit and tie.
+45: A boat is in the middle of a huge wave. A man is on the boat.
+46: A man is talking to a woman on a motorcycle. The woman is holding a tire.
+47: A woman is sitting in a chair. She is looking at a car that is sitting on a table.
+48: Two giant monsters are fighting over a city. The monsters are made of wood.
+49: A woman is sitting on a couch in a living room. She is looking at a dog sitting on a chair.
+50: A man is playing a game of baseball with his friends. A bull is standing in the background.
+51: A baby is in a crib. A man is sitting in the crib.
+52: Two people are sitting in a backyard. A huge wave is coming towards them.
+53: Two angels are sitting on a cloud. One angel is talking to the other.
+54: Two people are standing in front of a desk. One of them is holding a stack of papers.
+55: Two elderly people are sitting in a chair watching television. One of the elderly people has a bunch of grass growing out of his head.
+56: A man is standing in front of a pharmacy. He is holding a bottle of pills.
+57: A group of men are sitting on a ledge overlooking a city. A woman is sitting on a chair.
+58: A man is sitting in a chair in a room. He is looking at a painting on the wall.
+59: A man is sitting on the couch and watching a cat through the window. The cat is sitting on the man's lap.
+60: Three cavemen are standing in front of a cave. A fourth caveman is standing behind them.
+61: Three men are standing in a park. One of them has a gun.
+62: A waitress is at a table with a mouse. The mouse is holding a menu.
+63: A man is walking his dog on a street. A large, black, mechanical vacuum cleaner is sitting on the ground.
+64: There are people on the oil rig. The people are wearing suits.
+65: A man is standing in front of a city. He is wearing a green suit and holding a microphone.
+66: A hippopotamus is sitting on a couch. Two people are sitting on the couch.
+67: A man and a woman are standing in front of a coffin. The man is looking at the coffin.
+68: Two men are walking their dogs. One man is talking to the other man.
+69: There are a bunch of people sitting around a table. One of the people is holding a piece of paper.
+70: A group of people are sitting around a table. One of the people is holding a microphone.
+71: A man is trapped in a small box. He is trying to escape.
+72: Three men are sitting in a courtroom. One man is on the witness stand. The other two men are sitting in chairs.
+73: A lobster is sitting at a desk. A man is sitting at the other desk.
+74: A man is sitting at a desk with a vulture on his shoulder. The vulture is saying, "I'm going to get you."
+75: A man is holding a remote control. He is standing in front of a television.
+76: A man is sitting at his desk. He has a small child in his lap. The man is talking to the child.
+77: A man is talking on the phone to a woman. She is sitting in a chair.
+78: A man is standing on a ladder. He is holding a sign that says, "I'm a doctor."
+79: A man and a woman are in a kitchen. The man is holding a grill.
+80: A man is sitting at his desk. He is talking on the phone.
+81: Two firefighters are standing in front of a pole. A third firefighter is standing behind them.
+82: A man is sitting at a table with a woman. The man is holding a glass of wine.
+83: A man is in a courtroom. He is talking to a man who is sitting at the desk.
+84: A lion is sitting on the ground. A man is sitting on a chair.
+85: A man is sitting at a desk in a room full of furniture. A woman is sitting on the floor in front of him.
+86: A girl is climbing a rock wall. She is holding a rope.
+87: Two men are fishing in a lake. One man is holding a fishing rod. The other man is holding a bag.
+88: A man is looking at a bird on a tree. The man is talking to a woman.
+89: A man is standing on a pile of rocks.  He is talking to a woman who is standing next to him.
+90: Three men are sitting in a chair. One man is wearing a suit and tie. The other two men are wearing suits and ties.
+91: Two men are playing chess on a chessboard. The man on the left is wearing a cowboy hat.
+92: Two pige are perched on a ledge. A pigeon is pecking at a pigeon.
+93: Two women are sitting on a nest. The women are talking about how they are going to get married.
+94: A man is sitting in a cave. He is talking to a man in a wheelchair.
+95: A man is sitting in a chair with a rocket on his lap. He is talking to a man in a suit.
+96: Two skeletons are fighting over a top hat. The skeletons are wearing suits and hats.
+97: A man is sitting in a hammock in a room. A woman is sitting on a chair.
+98: A man is sweeping the sidewalk in front of a house. A man is standing in the doorway.
+99: There are people in the senate chamber. The people are in a row of chairs.
+100: A man and a woman are in the woods. The man is eating a piece of meat. The woman is holding a snake.
+101: Two fish are swimming in the ocean. There is a skeleton of a fish in the water.
+102: A man is fighting a dragon. The dragon is a giant.
+103: A man is in a hospital bed. He is talking to a woman.
+104: Two people are hiking in the woods. One of the hikers is wearing a bear costume. The other is wearing a backpack.
+105: Two men are playing a game of chess. One of the men is looking at a piece of paper.
+106: A man and a woman are walking down the street. The man has a lobster in his hand.
+107: A man is in an elevator. He is being carried by a woman.
+108: A man is sitting on a couch with his wife and child. The man is holding a baby and the baby is holding a toy.
+109: A man is sitting in a cave with a car. A man is sitting in the car.
+110: A doctor is holding a syringe. A patient is sitting in the chair.
+111: Three men are riding horses. One man is on a horse, and the other two are on the other horses.
+112: A man and a woman are in a room. The man is holding a gun to the woman's head.
+113: Two pigs are in a trough. One of the pigs is holding a piggy bank.
+114: A man is kneeling in the desert. He is holding a briefcase.
+115: Two men are in a box. One man is wearing a pair of black socks. The other man is wearing a pair of black shoes.
+116: A man is sitting at a desk with a sword in his hand. He is holding it up to the glass of a window.
+117: Two men are sitting on a couch. A giraffe is sitting on the couch.
+118: A man is sitting in a chair in a room. He is talking to a woman who is sitting on a chair.
+119: Three men are floating in the ocean. One man is wearing a suit and holding a bottle of wine. The other two men are wearing suits and holding a bottle of wine.
+120: A doctor is examining a patient in a hospital bed. The doctor is wearing a lab coat and a stethoscope.
+121: A nurse is serving a man a cup of coffee. The man is sitting at a table with a woman.
+122: A scientist is talking to a mouse. The mouse is wearing a lab coat.
+123: A police officer is driving a car and a man is standing next to the car. The man is pointing at a sign that says "speed limit."
+124: Two angels are sitting on a box. A third angel is sitting on a chair.
+125: A man is in his house and there are boxes flying around. The man is scared.
+126: A man is in bed and a woman is standing next to him. The woman is holding a briefcase.
+127: A man is in a hammock in a hotel room. He is talking to a man in a suit.
+128: A man and a woman are in bed. The man is holding a fishing rod.
+129: A man and a woman are talking in a room. A man in a suit is standing in the doorway.

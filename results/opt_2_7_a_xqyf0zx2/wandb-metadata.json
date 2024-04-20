@@ -1,8 +1,8 @@
 {
     "os": "Linux-6.1.58+-x86_64-with-glibc2.35",
     "python": "3.10.12",
-    "heartbeatAt": "2024-04-17T08:24:30.775737",
-    "startedAt": "2024-04-17T08:24:30.194530",
+    "heartbeatAt": "2024-04-20T06:50:31.585146",
+    "startedAt": "2024-04-20T06:50:31.019889",
     "docker": null,
     "cuda": null,
     "args": [
@@ -13,9 +13,13 @@
         "TRAIN.EPOCHS",
         "5",
         "TRAIN.NUM_BATCHES",
-        "-1",
+        "4",
+        "LORA.BIAS",
+        "none",
         "MODEL.NOTES",
-        "First full run"
+        "First qformer and lang proj",
+        "LORA.DROPOUT",
+        ".3"
     ],
     "state": "running",
     "program": "/content/drive/MyDrive/OMSCS/CS 7643 Deep Learning/final_project/blip2cap/tools/run_net.py",
@@ -23,11 +27,11 @@
     "codePath": "tools/run_net.py",
     "git": {
         "remote": "https://jsheinkopf3:@github.gatech.edu/eyang80/blip2cap.git",
-        "commit": "d502e6958adb31b5252c73667a270984d21dbad9"
+        "commit": "ff5f7c6693befe089c9106819ade34139513462e"
     },
     "email": null,
     "root": "/content/drive/MyDrive/OMSCS/CS 7643 Deep Learning/final_project/blip2cap",
-    "host": "da1ea9931308",
+    "host": "313cda30ad72",
     "username": "root",
     "executable": "/usr/bin/python3",
     "cpu_count": 1,
@@ -52,7 +56,7 @@
     "disk": {
         "/": {
             "total": 78.1898422241211,
-            "used": 44.235939025878906
+            "used": 44.360713958740234
         }
     },
     "gpu": "Tesla T4",
