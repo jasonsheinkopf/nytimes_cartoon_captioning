@@ -13,22 +13,25 @@ from transformers import (
     Blip2ForConditionalGeneration,
     #PhiConfig,
     Blip2Model,
-    AutoConfig
+    AutoConfig,
+    AutoModelForCausalLM
 )
 import torch
 import torch.nn as nn
 import bitsandbytes
 from peft import LoraConfig, get_peft_model
 
+OPT_1_3_INPUT_DIM = 2048
 
 def blip2_quant(cfg):
-    quantization_config = BitsAndBytesConfig(load_in_8_bit=True)
+    #quantization_config = BitsAndBytesConfig(load_in_8_bit=True)
     config = AutoConfig.from_pretrained(cfg.MODEL.BASE_MODEL)
     config.attention_probs_dropout_prob = cfg.MODEL.DROPOUT_RATE
     base_model = Blip2ForConditionalGeneration.from_pretrained(
         cfg.MODEL.BASE_MODEL,
         device_map="auto",
-        quantization_config=quantization_config,
+        #quantization_config=quantization_config,
+        load_in_8bit=True,
         config=config)
 
     return base_model
@@ -99,17 +102,20 @@ def opt_2_7_identity(cfg):
         print(original_language_projection.weight)
         print(identity.weight)
 
-    model = get_peft_model(base_model, LoraConfig(
-        r=16,
-        lora_alpha=32,
-        lora_dropout=0.05,
-        bias="none",
-        target_modules=[
-            #"q_proj", 
-            # "k_proj", 
-            "language_projection.0",
-            "language_projection.2"
-        ],
-    ))
+    # add LoRA adapters for all layers
+    model = get_peft_model(base_model,
+                           LoraConfig(
+                               r=16,
+                               lora_alpha=32,
+                               lora_dropout=cfg.MODEL.LORA_DROPOUT,
+                               bias="none",
+                               target_modules=[
+                                    #"language_projection.0",
+                                    "language_projection.2"
+                                    ]
+                                )
+                            )
+    
+    print(model)
 
     return model
