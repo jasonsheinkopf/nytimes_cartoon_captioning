@@ -58,7 +58,6 @@ def test(cfg, model, test_loader, processor, wandb, train_epoch=0):
         test_output_text = ""
         for idx, item in enumerate(gen_text_list):
             test_output_text += f"{idx}: {item}\n"
-        print(f'\nFinal captions\n{test_output_text}')
 
         if wandb.run is not None:
             # save the output file to wandb run dir
@@ -69,6 +68,9 @@ def test(cfg, model, test_loader, processor, wandb, train_epoch=0):
                 f.write(test_output_text)
             # save to wandb run
             wandb.save(gens_path, base_path=wandb_run_dir)
+
+        if train_epoch == cfg.TRAIN.EPOCHS:
+            print(f'\nFinal captions\n{test_output_text}')
 
         return test_loss, metrics
 

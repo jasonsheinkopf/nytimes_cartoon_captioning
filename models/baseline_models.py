@@ -36,59 +36,31 @@ def blip2_quant(cfg):
 
 def opt_2_7(cfg):
     """
-    Unmodified BLIP2
+    BLIP 2 fill full qformer and language projection layer trained with LoRa
     """
     # get quantized base model
     base_model = blip2_quant(cfg)
 
-    # add LoRA adapters for all layers
-    model = get_peft_model(base_model,
-                           LoraConfig(
-                               r=16,
-                               lora_alpha=32,
-                               lora_dropout=cfg.MODEL.LORA_DROPOUT,
-                               bias="none",
-                               target_modules=[
-                                #    "qformer",
-                                    # "q_proj", 
-                                    # "k_proj",
-                                    # "v_proj",
-                                    # "out_proj",
-                                    "language_projection"
-                                    ]
-                                )
-                            )
-    
-    model.print_trainable_parameters()
-
-    return model
-
-
-def opt_2_7_qlang(cfg):
-    """
-    Unmodified BLIP2
-    """
-    # get quantized base model
-    base_model = blip2_quant(cfg)
+    target_modules = [
+        'attention.attention.query',
+        'attention.attention.key',
+        'attention.attention.value',
+        'crossattention.output.dense',
+        'intermediate_query.dense',
+        'output_query.query',
+        'language_projection'
+    ]
 
     # add LoRA adapters for all layers
     model = get_peft_model(base_model,
                            LoraConfig(
-                               r=16,
-                               lora_alpha=32,
-                               lora_dropout=cfg.MODEL.LORA_DROPOUT,
-                               bias="none",
-                               target_modules=[
-                                   "qformer",
-                                    # "q_proj", 
-                                    # "k_proj",
-                                    # "v_proj",
-                                    # "out_proj",
-                                    "language_projection"
-                                    ]
-                                )
-                            )
-    
+                               r=cfg.LORA.R,
+                               lora_alpha=cfg.LORA.ALPHA,
+                               lora_dropout=cfg.LORA.DROPOUT,
+                               bias=cfg.LORA.BIAS,
+                               target_modules=target_modules
+                               ))
+
     model.print_trainable_parameters()
 
     return model
