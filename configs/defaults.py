@@ -102,7 +102,7 @@ _C.LORA.R = 16
 _C.LORA.ALPHA = 32
 
 # lora bias
-_C.LORA.BIAS = 'none'   # none, learnable, fixed
+_C.LORA.BIAS = 'none'   # none, all, lora_only
 
 ################################
 # Data
