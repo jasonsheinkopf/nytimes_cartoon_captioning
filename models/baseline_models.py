@@ -24,13 +24,14 @@ from peft import LoraConfig, get_peft_model
 OPT_1_3_INPUT_DIM = 2048
 
 def blip2_quant(cfg):
-    quantization_config = BitsAndBytesConfig(load_in_8_bit=True)
+    #quantization_config = BitsAndBytesConfig(load_in_8_bit=True)
     config = AutoConfig.from_pretrained(cfg.MODEL.BASE_MODEL)
     config.attention_probs_dropout_prob = cfg.MODEL.DROPOUT_RATE
     base_model = Blip2ForConditionalGeneration.from_pretrained(
         cfg.MODEL.BASE_MODEL,
         device_map="auto",
-        quantization_config=quantization_config,
+        #quantization_config=quantization_config,
+        load_in_8bit=True,
         config=config)
 
     return base_model
