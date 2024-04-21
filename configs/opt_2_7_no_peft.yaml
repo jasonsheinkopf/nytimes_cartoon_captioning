@@ -11,7 +11,7 @@ TEST:
   NUM_BATCHES: 10 # -1 to test over entire test set
 MODEL:
   BASE_MODEL: Salesforce/blip2-opt-2.7b
-  ARCH: blip2_quant
+  ARCH: opt_2_7_no_peft
   NOTES: ""
   DROPOUT_RATE: 0.15
   OUTPUT_DIR: ""
