@@ -5,7 +5,6 @@ TRAIN:
   CHECKPOINT_PERIOD: 1
   EPOCHS: 6
   WANDB_ENTITY: 'captioneers'
-  WANDB_PROJECT: "blip2cap.testing_eyang"
   NUM_BATCHES: -1
 TEST:
   BATCH_SIZE: 4
@@ -15,9 +14,13 @@ MODEL:
   ARCH: opt_2_7_identity
   NOTES: ""
   DROPOUT_RATE: 0.15
-  LORA_DROPOUT: 0.15
   OUTPUT_DIR: ""
   L2_REG: 0.15
+LORA:
+  DROPOUT: 0.15
+  R: 32
+  ALPHA: 32
+  BIAS: 'none'   # none, all, lora_only
 DATA:
   DATASET: mhessel/newyorker_caption_contest
   ANNOTATION: explanation
