@@ -56,10 +56,10 @@ def opt_2_7(cfg):
     # add LoRA adapters for all layers
     model = get_peft_model(base_model,
                            LoraConfig(
-                               r=16,
-                               lora_alpha=32,
-                               lora_dropout=cfg.MODEL.LORA_DROPOUT,
-                               bias="none",
+                               r=cfg.LORA.R,
+                               lora_alpha=cfg.LORA.ALPHA,
+                               lora_dropout=cfg.LORA.DROPOUT,
+                               bias=cfg.LORA.BIAS,
                                target_modules=[
                                 #    "qformer",
                                     "q_proj", 
@@ -99,10 +99,10 @@ def opt_1_3(cfg):
     # add LoRA adapters for all layers
     model = get_peft_model(base_model,
                            LoraConfig(
-                               r=16,
-                               lora_alpha=32,
-                               lora_dropout=cfg.MODEL.LORA_DROPOUT,
-                               bias="none",
+                               r=cfg.LORA.R,
+                               lora_alpha=cfg.LORA.ALPHA,
+                               lora_dropout=cfg.LORA.DROPOUT,
+                               bias=cfg.LORA.BIAS,
                                target_modules=[
                                 #    "qformer",
                                     # "q_proj", 
