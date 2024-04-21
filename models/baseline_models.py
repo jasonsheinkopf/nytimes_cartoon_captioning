@@ -117,27 +117,6 @@ def opt_1_3(cfg):
     model.print_trainable_parameters()
     return model
 
-def opt_2_7_qlang(cfg):
-    """
-    Unmodified BLIP2
-    """
-    # get quantized base model
-    base_model = blip2_quant(cfg)
-
-    # add LoRA adapters for all layers
-    model = get_peft_model(base_model,
-                           LoraConfig(
-                               r=cfg.LORA.R,
-                               lora_alpha=cfg.LORA.ALPHA,
-                               lora_dropout=cfg.LORA.DROPOUT,
-                               bias=cfg.LORA.BIAS,
-                               target_modules=target_modules
-                               ))
-
-    model.print_trainable_parameters()
-
-    return model
-
 
 def opt_2_7_identity(cfg):
     """
