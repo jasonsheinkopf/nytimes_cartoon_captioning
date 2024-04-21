@@ -36,10 +36,42 @@ def blip2_quant(cfg):
 
     return base_model
 
+def opt_2_7_no_peft(cfg):
+    """
+    Opt 2.7 with vision and language models frozen. No peft.
+    """
+    # get quantized base model
+    base_model = blip2_quant(cfg)
+
+    # Freeze all vision model params
+    for name, param in base_model.vision_model.named_parameters():
+        # Set requires_grad to False for all parameters
+        param.requires_grad = False
+
+    # Freeze language model params
+    for name, param in base_model.language_model.named_parameters():
+        # Set requires_grad to False for all parameters
+        param.requires_grad = False
+
+    # Iterate through the named parameters of the qformer and set grad to true when possible
+    for name, param in base_model.qformer.named_parameters():
+        # Check if the parameter is of a compatible type
+        if param.dtype in [torch.float32, torch.float64, torch.complex64, torch.complex128]:
+            # Set requires_grad to True for all compatible parameters
+            param.requires_grad = True
+
+    # create new trainable linear layer
+    base_model.language_projection = bitsandbytes.nn.Linear8bitLt(
+        base_model.language_projection.in_features, base_model.language_projection.out_features).to(base_model.device)
+    for name, param in base_model.language_projection.named_parameters():
+        # Set requires_grad to True for all compatible parameters
+        param.requires_grad = True
+
+    return base_model
 
 def opt_2_7(cfg):
     """
-    BLIP 2 fill full qformer and language projection layer trained with LoRa
+    BLIP 2 full qformer and language projection layer trained with LoRa
     """
     # get quantized base model
     base_model = blip2_quant(cfg)
