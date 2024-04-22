@@ -164,10 +164,10 @@ def opt_1_3(cfg):
         trust_remote_code=False,
         #local_files_only=True
         device_map='auto',load_in_8bit=True
+    )
 
     OPT_1_3_INPUT_DIM = 2048
 
-    )
     base_model.language_model = opt_1_3_lm
     base_model.language_projection = bitsandbytes.nn.Linear8bitLt(
         original_language_projection.in_features, OPT_1_3_INPUT_DIM).to(base_model.device)
