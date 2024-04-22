@@ -23,10 +23,55 @@ from peft import LoraConfig, get_peft_model
 
 OPT_1_3_INPUT_DIM = 2048
 
+
 def blip2_quant(cfg):
     base_model = Blip2ForConditionalGeneration.from_pretrained(
         "Salesforce/blip2-opt-2.7b", 
         device_map="auto", load_in_8bit=True)
+
+    return base_model
+
+
+def opt_2_7_no_peft(cfg):
+    """
+    Opt 2.7 with vision and language models frozen. No peft.
+    """
+    # get quantized base model
+    base_model = blip2_quant(cfg)
+
+    # Freeze all vision model params
+    for name, param in base_model.vision_model.named_parameters():
+        # Set requires_grad to False for all parameters
+        param.requires_grad = False
+
+    # Freeze language model params
+    for name, param in base_model.language_model.named_parameters():
+        # Set requires_grad to False for all parameters
+        param.requires_grad = False
+
+    # Iterate through the named parameters of the qformer and set grad to true when possible
+    for name, param in base_model.qformer.named_parameters():
+        # Check if the parameter is of a compatible type
+        if param.dtype in [torch.float32, torch.float64, torch.complex64, torch.complex128]:
+            # Set requires_grad to True for all compatible parameters
+            param.requires_grad = True
+
+    # # create new trainable linear layer
+    # base_model.language_projection = bitsandbytes.nn.Linear8bitLt(
+    #     base_model.language_projection.in_features, base_model.language_projection.out_features).to(base_model.device)
+    # for name, param in base_model.language_projection.named_parameters():
+    #     # Set requires_grad to True for all compatible parameters
+    #     param.requires_grad = True
+
+    # Calculate total number of parameters
+    total_params = sum(p.numel() for p in base_model.parameters())
+    # Calculate number of trainable parameters
+    trainable_params = sum(p.numel() for p in base_model.parameters() if p.requires_grad)
+
+    # Calculate percentage of trainable parameters
+    percentage_trainable = (trainable_params / total_params) * 100
+
+    print(f"Percentage of trainable parameters: {percentage_trainable:.2f}%")
 
     return base_model
 
@@ -104,6 +149,7 @@ def opt_2_7(cfg):
 
     return model
 
+
 def opt_1_3_qformer_projection(cfg):
     """
     Maximal language model replacement of Salesforce/blip2-opt-2.7b with the 
@@ -149,6 +195,7 @@ def opt_1_3_qformer_projection(cfg):
     
     model.print_trainable_parameters()
     return model
+
 
 def opt_1_3(cfg):
     """
