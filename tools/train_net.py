@@ -15,8 +15,6 @@ sys.path.append(project_path)
 from test_net import test
 import math
 
-from data.nytimes import build_data_loader
-
 
 def log_data(train_loss, test_loss, metrics, cur_epoch, cfg, wandb):
     print(f'Epoch: {cur_epoch}, Train Loss: {train_loss}, Test Loss: {test_loss}')
@@ -99,7 +97,7 @@ def train(cfg, model, train_loader, test_loader, processor, wandb):
     print('Training with config:')
     print(cfg)
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=5e-4, weight_decay=cfg.MODEL.L2_REG)
+    optimizer = torch.optim.Adam(model.parameters(), lr=cfg.MODEL.LR, weight_decay=cfg.MODEL.L2_REG)
 
     for cur_epoch in range(cfg.TRAIN.EPOCHS):
         print(f'\n==================================================')

@@ -16,6 +16,7 @@ MODEL:
   DROPOUT_RATE: 0.15
   OUTPUT_DIR: ""
   L2_REG: 0.15
+  LR: 7e-4
 LORA:
   DROPOUT: 0.15
   R: 32

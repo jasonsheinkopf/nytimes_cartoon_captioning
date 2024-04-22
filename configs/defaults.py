@@ -86,6 +86,9 @@ _C.MODEL.DEVICE = "cuda"
 # output dir
 _C.MODEL.OUTPUT_DIR = ""
 
+# learning rate
+_C.MODEL.LR = 7e-4
+
 ################################
 # Lora
 ################################
