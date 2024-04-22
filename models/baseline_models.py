@@ -24,15 +24,9 @@ from peft import LoraConfig, get_peft_model
 OPT_1_3_INPUT_DIM = 2048
 
 def blip2_quant(cfg):
-    #quantization_config = BitsAndBytesConfig(load_in_8_bit=True)
-    config = AutoConfig.from_pretrained(cfg.MODEL.BASE_MODEL)
-    config.attention_probs_dropout_prob = cfg.MODEL.DROPOUT_RATE
     base_model = Blip2ForConditionalGeneration.from_pretrained(
-        cfg.MODEL.BASE_MODEL,
-        device_map="auto",
-        #quantization_config=quantization_config,
-        load_in_8bit=True,
-        config=config)
+        "Salesforce/blip2-opt-2.7b", 
+        device_map="auto", load_in_8bit=True)
 
     return base_model
 
@@ -171,6 +165,8 @@ def opt_1_3(cfg):
         #local_files_only=True
         device_map='auto',load_in_8bit=True
 
+    OPT_1_3_INPUT_DIM = 2048
+
     )
     base_model.language_model = opt_1_3_lm
     base_model.language_projection = bitsandbytes.nn.Linear8bitLt(
@@ -256,10 +252,7 @@ def opt_1_3_colab(cfg):
     original_language_projection = base_model.language_projection
 
     opt_1_3_lm = AutoModelForCausalLM.from_pretrained('facebook/opt-1.3b',
-        #torch_dtype=torch.float16,
-        #torch_dtype=torch.bfloat16,
         trust_remote_code=False,
-        #local_files_only=True
         device_map='auto',load_in_8bit=True
 
     )
