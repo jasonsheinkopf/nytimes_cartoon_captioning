@@ -60,12 +60,22 @@ def opt_2_7_no_peft(cfg):
             # Set requires_grad to True for all compatible parameters
             param.requires_grad = True
 
-    # create new trainable linear layer
-    base_model.language_projection = bitsandbytes.nn.Linear8bitLt(
-        base_model.language_projection.in_features, base_model.language_projection.out_features).to(base_model.device)
-    for name, param in base_model.language_projection.named_parameters():
-        # Set requires_grad to True for all compatible parameters
-        param.requires_grad = True
+    # # create new trainable linear layer
+    # base_model.language_projection = bitsandbytes.nn.Linear8bitLt(
+    #     base_model.language_projection.in_features, base_model.language_projection.out_features).to(base_model.device)
+    # for name, param in base_model.language_projection.named_parameters():
+    #     # Set requires_grad to True for all compatible parameters
+    #     param.requires_grad = True
+
+    # Calculate total number of parameters
+    total_params = sum(p.numel() for p in base_model.parameters())
+    # Calculate number of trainable parameters
+    trainable_params = sum(p.numel() for p in base_model.parameters() if p.requires_grad)
+
+    # Calculate percentage of trainable parameters
+    percentage_trainable = (trainable_params / total_params) * 100
+
+    print(f"Percentage of trainable parameters: {percentage_trainable:.2f}%")
 
     return base_model
 
