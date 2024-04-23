@@ -6,7 +6,7 @@ Test BLIP2 image captioning model.
 
 import torch
 import sys, os
-# import wandb
+import pickle
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 project_path = os.path.join(script_dir, '..', '..', 'BLIP2CAP')
@@ -54,10 +54,13 @@ def test(cfg, model, test_loader, processor, wandb, train_epoch=0):
         print('\nGetting metrics on test set.\n')
         gen_text_list, metrics = infer(test_loader, model, processor, 1, cfg)
 
+        with open('/Users/jasonsheinkopf/vscode/blip2cap/data/questions.pkl', 'rb') as f:
+            ground_truth = pickle.load(f)
+
         # push results of test for this epoch to wandb
         test_output_text = ""
         for idx, item in enumerate(gen_text_list):
-            test_output_text += f"{idx}: {item}\n"
+            test_output_text += f"{idx}: {item}\t{ground_truth[idx]}\n"
 
         if wandb.run is not None:
             # save the output file to wandb run dir
