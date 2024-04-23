@@ -209,12 +209,14 @@ def opt_1_3_qformer(cfg):
                                lora_dropout=cfg.LORA.DROPOUT,
                                bias=cfg.LORA.BIAS,
                                target_modules=[
-                                    "qformer",
+                                    #"qformer",
                                     # "q_proj", 
                                     # "k_proj",
                                     # "v_proj",
                                     # "out_proj",
-                                    #"language_projection"
+                                    #"language_projection",
+                                    "crossattention.attention.query",
+                                    "crossattention.attention.key"
                                     ]
                                 )
                             )
