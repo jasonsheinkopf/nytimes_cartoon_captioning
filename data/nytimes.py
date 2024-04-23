@@ -18,7 +18,8 @@ class ImageCaptioningDataset(Dataset):
         encoding = self.processor(images=item["image"], padding="max_length", return_tensors="pt")
         # remove batch dimension
         encoding = {k: v.squeeze() for k, v in encoding.items()}
-        encoding["text"] = item['questions'][0]
+        encoding["text"] = item[self.feature][0]
+
         return encoding
 
 
