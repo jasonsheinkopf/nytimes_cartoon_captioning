@@ -60,7 +60,7 @@ def test(cfg, model, test_loader, processor, wandb, train_epoch=0):
         # push results of test for this epoch to wandb
         test_output_text = ""
         for idx, item in enumerate(gen_text_list):
-            test_output_text += f"({idx}) Generation: {item} - Ground Truth: {ground_truth[idx]}\n"
+            test_output_text += f"{idx}\nGeneration: {item}\nGround Truth: {ground_truth[idx]}\n\n"
 
         if wandb.run is not None:
             # save the output file to wandb run dir
