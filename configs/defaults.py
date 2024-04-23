@@ -120,7 +120,7 @@ _C.DATA.DATASET = "mhessel/newyorker_caption_contest"
 _C.DATA.ANNOTATION = "explanation"
 
 # Which feature to use for captioning
-_C.DATA.FEATURE = "image_description"
+_C.DATA.FEATURE = "questions"
 
 #  Hugging face processor for image processing and text tokenization
 _C.DATA.PROCESSOR = "Salesforce/blip2-opt-2.7b"

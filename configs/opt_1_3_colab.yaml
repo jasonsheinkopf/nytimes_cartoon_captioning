@@ -24,5 +24,5 @@ LORA:
 DATA:
   DATASET: mhessel/newyorker_caption_contest
   ANNOTATION: explanation
-  FEATURE: image_description
+  FEATURE: questions
   PROCESSOR: Salesforce/blip2-opt-2.7b
