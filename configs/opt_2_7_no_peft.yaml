@@ -11,12 +11,11 @@ TEST:
   NUM_BATCHES: 10 # -1 to test over entire test set
 MODEL:
   BASE_MODEL: Salesforce/blip2-opt-2.7b
-  ARCH: opt_2_7
+  ARCH: opt_2_7_no_peft
   NOTES: ""
   DROPOUT_RATE: 0.15
   OUTPUT_DIR: ""
   L2_REG: 0.15
-  LR: 7e-4
 LORA:
   DROPOUT: 0.15
   R: 32
@@ -25,5 +24,5 @@ LORA:
 DATA:
   DATASET: mhessel/newyorker_caption_contest
   ANNOTATION: explanation
-  FEATURE: questions  #image_description, image_uncanny_descriptions, questions, from_description, label
+  FEATURE: questions
   PROCESSOR: Salesforce/blip2-opt-2.7b

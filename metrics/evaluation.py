@@ -43,7 +43,7 @@ def infer(test_loader, model, processor, num_samples, cfg):
         pixel_values = batch.pop('pixel_values').to(model.device, torch.float32)
 
         # get generated ids from model for evaluation
-        gen_ids = model.generate(pixel_values, max_length=75)
+        gen_ids = model.generate(pixel_values, max_length=25)
 
         # concatenate list of batch ids to accumulated list
         all_gen_ids_list += gen_ids.tolist()
