@@ -26,3 +26,4 @@ DATA:
   ANNOTATION: explanation
   FEATURE: questions
   PROCESSOR: Salesforce/blip2-opt-2.7b
+SAVE_MODEL: False

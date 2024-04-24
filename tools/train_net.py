@@ -116,8 +116,15 @@ def train(cfg, model, train_loader, test_loader, processor, wandb):
 
         print(f'\nEpoch {cur_epoch} training loss: {train_loss}')
 
-        # test on validation set
-        test_loss, metrics = test(cfg, model, test_loader, processor, wandb, cur_epoch)
+        if cfg.SAVE_MODEL:
+            test_loss = -1
+            metrics = {}
+            metrics['bleu'] = -1
+            metrics['rouge_1_f1'] = -1
+            metrics['meteor'] = -1
+        else:
+            # test on validation set
+            test_loss, metrics = test(cfg, model, test_loader, processor, wandb, cur_epoch)
 
         # generate data logs
         log_data(train_loss, test_loss, metrics, cur_epoch, cfg, wandb)

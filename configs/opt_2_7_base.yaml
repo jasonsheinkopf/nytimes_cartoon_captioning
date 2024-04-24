@@ -27,3 +27,4 @@ DATA:
   ANNOTATION: explanation
   FEATURE: questions  #image_description, image_uncanny_descriptions, questions, from_description, label
   PROCESSOR: Salesforce/blip2-opt-2.7b
+SAVE_MODEL: False
