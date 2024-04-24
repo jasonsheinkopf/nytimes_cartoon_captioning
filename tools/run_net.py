@@ -124,6 +124,9 @@ def main():
         gen_text, metrics = test(cfg, model, test_loader, processor)
         print('\nMetrics on test set')
         print(metrics)
+    #saving model for lora merge
+    saved_model = model.merge_and_unload()
+    saved_model.save_pretrained("../models/saved_model_27.hf", save_adapter=True, save_config=True)
         
 
 

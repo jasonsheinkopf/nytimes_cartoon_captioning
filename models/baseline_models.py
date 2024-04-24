@@ -170,11 +170,7 @@ def opt_2_7_identity(cfg):
     return model
 
 
-def opt_1_3_qformer(cfg):
-    """
-    Minimal language model replacement of Salesforce/blip2-opt-2.7b with the 
-    smaller facebook/opt-1.3b model.
-    """
+def opt_2_7_qformer(cfg):
     base_model = blip2_quant(cfg)
 
      # add LoRA adapters for all layers
@@ -199,6 +195,16 @@ def opt_1_3_qformer(cfg):
     
     model.print_trainable_parameters()
 
+    return model
+
+def opt_1_3_qformer(cfg):
+    """
+    Training on qformer on Salesforce/blip2-opt-2.7b then replace with the 
+    smaller facebook/opt-1.3b model.
+    """
+    base_model = Blip2ForConditionalGeneration.from_pretrained("../models/saved_model_27.hf", 
+    device_map="auto", load_in_8bit=True)
+    
     original_language_projection = base_model.language_projection
 
     opt_1_3_lm = AutoModelForCausalLM.from_pretrained('facebook/opt-1.3b',
