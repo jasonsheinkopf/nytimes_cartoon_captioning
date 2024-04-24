@@ -101,7 +101,7 @@ def main():
     if cfg.TRAIN.ENABLE:
         train(cfg, model, train_loader, test_loader, processor, wandb)
 
-        if cfg.SAVE_MODEL:
+        if cfg.TRAIN.SAVE_MODEL:
             # saving model for lora merge
             saved_model = model.merge_and_unload()
             saved_model.save_pretrained("../models/saved_model_27.hf", save_adapter=True, save_config=True)

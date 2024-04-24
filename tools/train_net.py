@@ -116,7 +116,7 @@ def train(cfg, model, train_loader, test_loader, processor, wandb):
 
         print(f'\nEpoch {cur_epoch} training loss: {train_loss}')
 
-        if cfg.SAVE_MODEL:
+        if cfg.TRAIN.SAVE_MODEL:
             test_loss = -1
             metrics = {}
             metrics['bleu'] = -1

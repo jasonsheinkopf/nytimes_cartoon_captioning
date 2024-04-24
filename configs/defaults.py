@@ -40,6 +40,8 @@ _C.TRAIN.WANDB_PROJECT = 'blip2cap'
 # Control number of train batches for testing
 _C.TRAIN.NUM_BATCHES = -1
 
+_C.TRAIN.SAVE_MODEL = False
+
 ################################
 # Testing
 ################################
