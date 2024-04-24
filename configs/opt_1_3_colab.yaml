@@ -7,18 +7,22 @@ TRAIN:
   WANDB_ENTITY: 'captioneers'
   NUM_BATCHES: -1
 TEST:
-  BATCH_SIZE: 8
-  NUM_BATCHES: -1 # -1 to test over entire test set
+  BATCH_SIZE: 4
+  NUM_BATCHES: 10 # -1 to test over entire test set
 MODEL:
   BASE_MODEL: Salesforce/blip2-opt-2.7b
-  ARCH: blip2_quant
+  ARCH: opt_1_3_colab
   NOTES: ""
   DROPOUT_RATE: 0.15
-  LORA_DROPOUT: 0.15
   OUTPUT_DIR: ""
   L2_REG: 0.15
+LORA:
+  DROPOUT: 0.15
+  R: 32
+  ALPHA: 32
+  BIAS: 'none'   # none, all, lora_only
 DATA:
   DATASET: mhessel/newyorker_caption_contest
   ANNOTATION: explanation
-  FEATURE: image_description
+  FEATURE: questions
   PROCESSOR: Salesforce/blip2-opt-2.7b
