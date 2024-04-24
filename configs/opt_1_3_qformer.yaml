@@ -17,8 +17,8 @@ MODEL:
   OUTPUT_DIR: ""
   L2_REG: 0.15
 LORA:
-  DROPOUT: 0.15
-  R: 32
+  DROPOUT: 0.05
+  R: 16
   ALPHA: 32
   BIAS: 'none'   # none, all, lora_only
 DATA:

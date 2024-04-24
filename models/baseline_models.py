@@ -176,32 +176,8 @@ def opt_1_3_qformer(cfg):
     smaller facebook/opt-1.3b model.
     """
     base_model = blip2_quant(cfg)
-    original_language_projection = base_model.language_projection
 
-    opt_1_3_lm = AutoModelForCausalLM.from_pretrained('facebook/opt-1.3b',
-        #torch_dtype=torch.float16,
-        #torch_dtype=torch.bfloat16,
-        trust_remote_code=False,
-        #local_files_only=True
-        device_map='auto',load_in_8bit=True
-
-    )
-    base_model.language_model = opt_1_3_lm
-    base_model.language_projection = bitsandbytes.nn.Linear8bitLt(
-        original_language_projection.in_features, OPT_1_3_INPUT_DIM).to(base_model.device)
-    base_model.post_init()
-
-    target_modules = [
-        'attention.attention.query',
-        'attention.attention.key',
-        'attention.attention.value',
-        'crossattention.output.dense',
-        'intermediate_query.dense',
-        'output_query.query',
-        'language_projection'
-    ]
-
-    # add LoRA adapters for all layers
+     # add LoRA adapters for all layers
     model = get_peft_model(base_model,
                            LoraConfig(
                                r=cfg.LORA.R,
@@ -217,6 +193,53 @@ def opt_1_3_qformer(cfg):
                                     #"language_projection",
                                     "crossattention.attention.query",
                                     "crossattention.attention.key"
+                                    ]
+                                )
+                            )
+    
+    model.print_trainable_parameters()
+
+    original_language_projection = base_model.language_projection
+
+    opt_1_3_lm = AutoModelForCausalLM.from_pretrained('facebook/opt-1.3b',
+        #torch_dtype=torch.float16,
+        #torch_dtype=torch.bfloat16,
+        trust_remote_code=False,
+        #local_files_only=True
+        device_map='auto',load_in_8bit=True
+
+    )
+    base_model.language_model = opt_1_3_lm
+    base_model.language_projection = bitsandbytes.nn.Linear8bitLt(
+        original_language_projection.in_features, OPT_1_3_INPUT_DIM).to(base_model.device)
+    base_model.post_init()
+
+    # qformer modules
+    target_modules = [
+        'attention.attention.query',
+        'attention.attention.key',
+        'attention.attention.value',
+        'crossattention.output.dense',
+        'intermediate_query.dense',
+        'output_query.query'
+    ]
+
+    # add LoRA adapters for all layers
+    model = get_peft_model(base_model,
+                           LoraConfig(
+                               r=cfg.LORA.R,
+                               lora_alpha=cfg.LORA.ALPHA,
+                               lora_dropout=cfg.LORA.DROPOUT,
+                               bias=cfg.LORA.BIAS,
+                               target_modules=[
+                                    #"qformer",
+                                    # "q_proj", 
+                                    # "k_proj",
+                                    # "v_proj",
+                                    # "out_proj",
+                                    "language_projection",
+                                    #"crossattention.attention.query",
+                                    #"crossattention.attention.key"
                                     ]
                                 )
                             )
