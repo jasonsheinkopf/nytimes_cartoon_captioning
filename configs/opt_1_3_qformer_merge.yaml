@@ -12,14 +12,14 @@ TEST:
   NUM_BATCHES: 10 # -1 to test over entire test set
 MODEL:
   BASE_MODEL: Salesforce/blip2-opt-2.7b
-  ARCH: opt_1_3_colab
+  ARCH: opt_1_3_qformer
   NOTES: ""
   DROPOUT_RATE: 0.15
   OUTPUT_DIR: ""
   L2_REG: 0.15
 LORA:
-  DROPOUT: 0.15
-  R: 32
+  DROPOUT: 0.05
+  R: 16
   ALPHA: 32
   BIAS: 'none'   # none, all, lora_only
 DATA:
