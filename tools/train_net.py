@@ -99,13 +99,6 @@ def train(cfg, model, train_loader, test_loader, processor, wandb):
 
     optimizer = torch.optim.Adam(model.parameters(), lr=cfg.MODEL.LR, weight_decay=cfg.MODEL.L2_REG)
 
-    # # get first sample from val set
-    # sample_datapoint = next(iter(test_loader))
-
-    # print(f"Target caption: {test_loader['questions'][IDX]}")
-    # example_inputs = processor(images=example_image, return_tensors="pt").to(device, torch.float16)
-    # example_pixel_values = example_inputs.pixel_values
-
     for cur_epoch in range(cfg.TRAIN.EPOCHS):
         print(f'\n==================================================')
         print(f'Training epoch: {cur_epoch}')
