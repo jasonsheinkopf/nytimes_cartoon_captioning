@@ -466,7 +466,7 @@ def opt_1_3_new_linear_layer(cfg):
 
 def opt_1_3_svd(cfg):
     base_model = blip2_quant(cfg)
-    ORIGINAL_LANGUAGE_PROJECTION_WEIGHTS_FILE = '../models/original_language_projection.float32.pt'
+    ORIGINAL_LANGUAGE_PROJECTION_WEIGHTS_FILE = './models/original_language_projection.float32.pt'
 
     #https://huggingface.co/blog/hf-bitsandbytes-integration#usage
     # base_model_fp32 = Blip2ForConditionalGeneration.from_pretrained("Salesforce/blip2-opt-2.7b", device_map="auto")

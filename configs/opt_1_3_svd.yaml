@@ -11,7 +11,7 @@ TEST:
   NUM_BATCHES: 10 # -1 to test over entire test set
 MODEL:
   BASE_MODEL: Salesforce/blip2-opt-2.7b
-  ARCH: opt_1_3_new_linear_layer
+  ARCH: opt_1_3_svd
   NOTES: ""
   DROPOUT_RATE: 0.15
   OUTPUT_DIR: ""
