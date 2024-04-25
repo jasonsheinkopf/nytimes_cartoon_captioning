@@ -488,7 +488,7 @@ def opt_1_3_qformer(cfg):
     Training on qformer on Salesforce/blip2-opt-2.7b then replace with the 
     smaller facebook/opt-1.3b model.
     """
-    base_model = Blip2ForConditionalGeneration.from_pretrained("../models/saved_model_27.hf", 
+    base_model = Blip2ForConditionalGeneration.from_pretrained(cfg.TRAIN.MODEL_DIR, 
     device_map="auto", load_in_8bit=True)
     
     original_language_projection = base_model.language_projection

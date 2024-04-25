@@ -7,6 +7,7 @@ TRAIN:
   WANDB_ENTITY: 'captioneers'
   NUM_BATCHES: -1
   SAVE_MODEL: True
+  MODEL_DIR: '/content/drive/MyDrive/GT/DL/Group_Project/blip2cap/models/saved_model_2_7.hf'
 TEST:
   BATCH_SIZE: 4
   NUM_BATCHES: 10 # -1 to test over entire test set

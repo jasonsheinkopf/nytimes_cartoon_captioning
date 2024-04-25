@@ -104,7 +104,7 @@ def main():
         if cfg.TRAIN.SAVE_MODEL:
             # saving model for lora merge
             saved_model = model.merge_and_unload()
-            saved_model.save_pretrained("../models/saved_model_27.hf", save_adapter=True, save_config=True)
+            saved_model.save_pretrained(cfg.TRAIN.MODEL_DIR, save_adapter=True, save_config=True)
             from pathlib import Path
 
             print(Path('../models/saved_model_27.hf').resolve())

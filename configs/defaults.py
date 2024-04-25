@@ -42,6 +42,8 @@ _C.TRAIN.NUM_BATCHES = -1
 
 _C.TRAIN.SAVE_MODEL = False
 
+_C.TRAIN.MODEL_DIR = '../models/saved_model_2_7.hf'
+
 ################################
 # Testing
 ################################
