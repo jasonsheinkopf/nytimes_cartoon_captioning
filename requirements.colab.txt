@@ -9,4 +9,4 @@ nltk
 wandb
 evaluate
 rouge_score
-pickle
+#pickle
