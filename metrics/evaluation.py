@@ -24,7 +24,7 @@ def evaluate_captions(input_text_list, gen_text_list):
     return metrics_results
 
 
-def infer(test_loader, model, processor, num_samples, cfg):
+def infer(test_loader, model, processor, epoch, cfg):
     '''
     Gets num_samples model output and input text
 
@@ -34,8 +34,12 @@ def infer(test_loader, model, processor, num_samples, cfg):
     # lists to store tokenized inputs and outputs
     all_gen_ids_list = []
     all_input_ids_list = []
-
+    num_batches = len(test_loader)
+    if cfg.TEST.NUM_BATCHES != -1 and epoch >= 0:
+        num_batches = cfg.TEST.NUM_BATCHES
     for idx, batch in enumerate(test_loader):
+        if idx >= num_batches:
+                break
         # get ground truth caption for item
         input_ids = batch.pop('input_ids').to(model.device, torch.long)
 
@@ -52,6 +56,7 @@ def infer(test_loader, model, processor, num_samples, cfg):
     gen_text_list = []
     input_text_list = []
 
+    test_output_text = ""
     num_generations = len(all_gen_ids_list)
 
     for i in range(num_generations):
@@ -63,12 +68,18 @@ def infer(test_loader, model, processor, num_samples, cfg):
         gen_text_list.append(gen_text.rstrip('\n'))
         input_text_list.append(orig_text.rstrip('\n'))
 
-
-        # while testing between train epochs only show first example
-        if num_samples == 1 and i == 0:
-            # show first sample
-            print(f'\nGround truth: {input_text_list[0]}\nGenerated text: {gen_text_list[0]}\n')
-
+        print_output = f'{i}:\nGround truth: {input_text_list[i]}\nGenerated text: {gen_text_list[i]}\n'
+        print(print_output)
+        
+    if wandb.run is not None:
+        # save the output file to wandb run dir
+        wandb_run_dir = wandb.run.dir
+        gens_path = os.path.join(wandb_run_dir, f'{wandb.run.id}_gen_captions_epoch_{epoch}.txt')
+        # write file to disk
+        with open(gens_path, 'w') as f:
+            f.write(test_output_text)
+        # save to wandb run
+        wandb.save(gens_path, base_path=wandb_run_dir)
 
     # evaluate all captions
     metrics = evaluate_captions(input_text_list, gen_text_list)
