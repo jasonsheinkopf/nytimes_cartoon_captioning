@@ -11,7 +11,12 @@ meteor_metric = evaluate.load("meteor")
 
 def evaluate_captions(input_text_list, gen_text_list):
     # compute metrics
-    bleu_score = bleu_metric.compute(predictions=gen_text_list, references=input_text_list)
+    try:
+        bleu_score = bleu_metric.compute(predictions=gen_text_list, references=input_text_list)
+    except ZeroDivisionError:
+        #workaround for metric computation bug.
+        dummy_gen_text_list = ['@' for entry in gen_text_list]
+        bleu_score = bleu_metric.compute(predictions=dummy_gen_text_list, references=input_text_list)
     rouge_score = rouge_metric.compute(predictions=gen_text_list, references=input_text_list)
     meteor_score = meteor_metric.compute(predictions=gen_text_list, references=input_text_list)
 
