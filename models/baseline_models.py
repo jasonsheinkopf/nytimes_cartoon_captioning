@@ -472,6 +472,7 @@ def opt_2_7_qformer(cfg):
                                     # "v_proj",
                                     # "out_proj",
                                     #"language_projection",
+                                    "query_tokens"
                                     "crossattention.attention.query",
                                     "crossattention.attention.key"
                                     ]
