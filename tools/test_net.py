@@ -16,7 +16,7 @@ sys.path.append(project_path)
 from metrics.evaluation import evaluate_captions, infer
 
 
-def test(cfg, model, test_loader, processor, wandb, train_epoch=0):
+def test(cfg, model, test_loader, train_loader=None, processor, wandb, train_epoch=0):
     """
     Test model on image captioning dataset.
     Args:
@@ -52,7 +52,7 @@ def test(cfg, model, test_loader, processor, wandb, train_epoch=0):
 
         # get metrics on all test samples
         print('\nGetting metrics on test set.\n')
-        gen_text_list, metrics = infer(test_loader, model, processor, train_epoch, cfg)
+        gen_text_list, metrics = infer(test_loader, model, processor, 1, cfg)
 
 
         return test_loss, metrics
