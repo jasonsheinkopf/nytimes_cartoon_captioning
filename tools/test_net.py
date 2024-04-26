@@ -16,7 +16,7 @@ sys.path.append(project_path)
 from metrics.evaluation import evaluate_captions, infer
 
 
-def test(cfg, model, test_loader, train_loader=None, processor, wandb, train_epoch=0):
+def test(cfg, model, test_loader, processor, wandb, train_epoch=0):
     """
     Test model on image captioning dataset.
     Args:
