@@ -103,6 +103,14 @@ def main():
         # infer on first X samples and save to wandb after run
         gen_text, metrics = infer(test_loader, train_loader, model, processor, epoch=-1, cfg=cfg)
 
+        if cfg.TRAIN.SAVE_MODEL:
+            # saving model for lora merge
+            saved_model = model.merge_and_unload()
+            saved_model.save_pretrained(cfg.TRAIN.MODEL_DIR, save_adapter=True, save_config=True)
+            from pathlib import Path
+
+            print(Path('../models/saved_model_27.hf').resolve())
+
     else:
         gen_text, metrics = test(cfg, model, test_loader, processor)
         print('\nMetrics on test set')
