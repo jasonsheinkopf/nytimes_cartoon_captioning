@@ -101,7 +101,7 @@ def main():
     if cfg.TRAIN.ENABLE:
         train(cfg, model, train_loader, test_loader, processor, wandb)
         # infer on first X samples and save to wandb after run
-        gen_text, metrics = infer(test_loader, train_loader, model, processor, epoch=-1, cfg=cfg)
+        gen_text, metrics = infer(test_loader, model, processor, epoch=-1, cfg=cfg)
 
         if cfg.TRAIN.SAVE_MODEL:
             # saving model for lora merge
