@@ -36,7 +36,7 @@ def infer(test_loader, model, processor, epoch, cfg):
     Num_samples == -1 to generate for entire test set
     '''
 
-    # lists to store tokenized inputs and outputs
+    # lists to store tokenized inputs and generations
     all_gen_ids_list = []
     all_input_ids_list = []
     num_batches = len(test_loader)
@@ -74,6 +74,7 @@ def infer(test_loader, model, processor, epoch, cfg):
         input_text_list.append(orig_text.rstrip('\n'))
 
         print_output = f'{i}:\nGround truth: {input_text_list[i]}\nGenerated text: {gen_text_list[i]}\n'
+        test_output_text += print_output
         print(print_output)
         
     if wandb.run is not None:
