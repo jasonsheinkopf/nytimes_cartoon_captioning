@@ -11,5 +11,5 @@ to be fine tuned on annotated image datasets.
 In this project, we developed a codebase which facilitates experimentation on the process of fine-tuning a BLIP model on the NYTimes Cartoon Captioning dataset. Our baseline model
 used the Opt 2.7B LLM.
 
-<img src="media/img_1.png" alt="Your GIF" width="500">
-<img src="media/img_2.png" alt="Your GIF" width="500">  
+<img src="img_1.png" alt="Your GIF" width="500">
+<img src="img_2.png" alt="Your GIF" width="500">  
